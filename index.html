@@ -1,0 +1,291 @@
+<html lang="en">
+    <head>
+        <meta name="charset" content="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="style.css"/>
+        <title>Tetris Game</title>
+        <script type="text/javascript" src="swiped-events.js"></script>
+    </head>
+    <body>
+        <main>
+            <h3>Score: <span id="score">0</span></h3>
+            <button id="start-button" onclick="startPause()">Start/Pause</button>
+        
+            <div class="grid">
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div class="before__grid"></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <div class="taken taken__grid"></div>
+                <span class="grid-clickleft" onclick="moveLeft()"></span>
+                <span class="grid-clickright" onclick="moveRight()"></span>
+            </div>
+            <h3>Siguiente figura</h3>
+            <div class="next-figure-grid">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </main>
+
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
