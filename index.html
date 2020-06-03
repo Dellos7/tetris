@@ -2,15 +2,26 @@
     <head>
         <meta name="charset" content="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link rel="stylesheet" href="style.css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css"/>
         <title>Tetris Game</title>
-        <script type="text/javascript" src="swiped-events.js"></script>
+        <script type="text/javascript" src="js/swiped-events.min.js"></script>
     </head>
     <body>
         <main>
-            <h3>Score: <span id="score">0</span></h3>
-            <button id="start-button" onclick="startPause()">Start/Pause</button>
-        
+            <h3 id="score">SCORE: <span id="score">0</span></h3>
+            <div id="core-buttons">
+                <button id="start-button" onclick="startPause()"><i class="material-icons">play_arrow</i></button>
+                <button id="volume-button" onclick="setVolume()"><i class="material-icons">volume_up</i></button>
+            </div>
+            <div id="touch-buttons">
+                <button id="go-left-button" onclick="moveLeft()"><i class="material-icons">keyboard_arrow_left</i></button>
+                <button id="go-right-button" onclick="moveRight()"><i class="material-icons">keyboard_arrow_right</i></button>
+                <button id="rotate-button-1" onclick="rotatePosition()"><i class="material-icons">rotate_90_degrees_ccw</i></button>
+                <button id="rotate-button-2" onclick="rotatePosition()"><i class="material-icons">rotate_90_degrees_ccw</i></button>
+                <button id="move-down-button-1" onclick="moveDown()"><i class="material-icons">keyboard_arrow_down</i></button>
+                <button id="move-down-button-2" onclick="moveDown()"><i class="material-icons">keyboard_arrow_down</i></button>
+            </div>
             <div class="grid">
                 <div class="before__grid"></div>
                 <div class="before__grid"></div>
@@ -262,10 +273,10 @@
                 <div class="taken taken__grid"></div>
                 <div class="taken taken__grid"></div>
                 <div class="taken taken__grid"></div>
-                <span class="grid-clickleft" onclick="moveLeft()"></span>
-                <span class="grid-clickright" onclick="moveRight()"></span>
+                <!-- <span class="grid-clickleft" onclick="moveLeft()"></span>
+                <span class="grid-clickright" onclick="moveRight()"></span> -->
             </div>
-            <h3>Siguiente figura</h3>
+            <h3 class="next-figure-title">Next</h3>
             <div class="next-figure-grid">
                 <div></div>
                 <div></div>
@@ -286,6 +297,12 @@
             </div>
         </main>
 
-        <script type="text/javascript" src="app.js"></script>
+        <audio id="audio">
+            <source src="assets/Tetris.ogg" type="audio/ogg">
+            <source src="assets/Tetris.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <script type="text/javascript" src="js/app.js"></script>
     </body>
 </html>

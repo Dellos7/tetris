@@ -39,7 +39,8 @@ const iTetromino = [
 const tetrominos = [ lTetromino, zTetromino, tTetromino, oTetromino, iTetromino ];
 const classes = [ 'l', 'z', 't', 'o', 'i' ];
 
-const TIME = 300; // cada "TIME"ms se mueve la figura una línea hacia abajo
+const DEFAULT_TIME = 600;
+let TIME = DEFAULT_TIME; // cada "TIME"ms se mueve la figura una línea hacia abajo
 let currentPosition = 4;
 let currentRotation = 0;
 let currentTetrominoPositions = [];
@@ -50,23 +51,27 @@ let paused = false;
 let currentTetrominoRandomIdx = -1;
 let nextTetrominoRandomIdx = -1;
 let score = 0;
+let volumeOn = true;
 
 const grid = document.querySelector('.grid');
 const scoreDisplay = document.querySelector('#score');
+const audio = document.getElementById('audio');
+audio.loop = true;
 
 document.addEventListener('DOMContentLoaded', () => {
     gridSquares = Array.from( document.querySelectorAll('.grid div:not(.before__grid)') ); 
     keyboardControl();
 
     document.addEventListener('swiped-left', () => {
-        console.log('swipe left');
-        rotatePosition();
+        if( !paused ){
+            rotatePosition();
+        }
     });
     document.addEventListener('swiped-right', () => {
-        console.log('swipe right');
-        rotatePosition();
+        if( !paused ){
+            rotatePosition();
+        }
     });
-
 });
 
 // Crea una nueva figura "tetromino"
@@ -146,10 +151,14 @@ const freeze = () => {
     return contains;
 };
 
-const checkValidPositionLeft = () => {
+const checkValidPositionLeft = ( forRotation ) => {
     // Indica si alguna de las celdas del tetromino está en la primera columna del grid
     const isAtLeftEdge = currentTetrominoPositions.some( (tetrominoPosition) => {
-        return (currentPosition + tetrominoPosition)%rowCount == 0;
+        if( forRotation ){
+            return (currentPosition + tetrominoPosition)%rowCount < 0;
+        } else{
+            return (currentPosition + tetrominoPosition)%rowCount == 0;
+        }
     });
     // ¿Tiene un tetromino a la izquierda?
     const hasTetrominoNext = currentTetrominoPositions.some( (tetroMinoPosition) => {
@@ -158,10 +167,14 @@ const checkValidPositionLeft = () => {
     return !isAtLeftEdge && !hasTetrominoNext;
 };
 
-const checkValidPositionRight = () => {
+const checkValidPositionRight = ( forRotation ) => {
     // ¿Tiene alguna pieza en la pared de la derecha?
     const isAtRightEdge = currentTetrominoPositions.some( (tetrominoPosition) => {
-        return (currentPosition + tetrominoPosition)%rowCount == rowCount -1;
+        if( forRotation ){
+            return (currentPosition + tetrominoPosition)%rowCount == rowCount;
+        } else{
+            return (currentPosition + tetrominoPosition)%rowCount == rowCount -1;
+        }
     });
     // ¿Tiene un tetromino a la derecha?
     const hasTetrominoNext = currentTetrominoPositions.some( (tetroMinoPosition) => {
@@ -178,12 +191,12 @@ const checkValidPositionBotom = () => {
 };
 
 const checkValidRotation = () => {
-    return checkValidPositionLeft() && checkValidPositionRight() && checkValidPositionBotom();
+    return checkValidPositionLeft( true ) && checkValidPositionRight( true ) && checkValidPositionBotom();
 };
 
 const moveLeft = () =>{
     drawTetromino( false ); 
-    if( checkValidPositionLeft() ){
+    if( checkValidPositionLeft( false ) ){
         currentPosition -= 1;
     }
     drawTetromino( true ); 
@@ -191,7 +204,7 @@ const moveLeft = () =>{
 
 const moveRight = () => {
     drawTetromino( false );
-    if( checkValidPositionRight() ){
+    if( checkValidPositionRight( false ) ){
         currentPosition += 1;
     }
     drawTetromino( true );
@@ -220,11 +233,13 @@ const keyboardControl = () => {
         if( e.keyCode === 39 && !paused ){ // Flecha derecha
             moveRight();
         }
-        // if( e.keyCode == 38 ){ // Flecha superior
         if( e.keyCode == 38 && !paused ){ // Flecha superior
             rotatePosition();
         }
-        if( e.keyCode === 32 ){ // Espacio
+        if( e.keyCode === 40 && !paused ){ // Flecha inferior
+            moveDown();
+        }
+        if( e.keyCode === 32 && !paused ){ // Espacio
             startPause();
         }
     });
@@ -244,6 +259,21 @@ const startPause = () => {
             paused = true;
             clearInterval(timerId);
         }
+    }
+    togglePlayPauseIcon(!paused);
+    if( !paused && volumeOn ){
+        audio.play();
+    } else if( volumeOn ) {
+        audio.pause();
+    }
+};
+
+const togglePlayPauseIcon = ( isStart ) => {
+    const startButtonIcon = document.querySelector('#start-button i[class~="material-icons"]');
+    if( isStart ){
+        startButtonIcon.innerHTML = 'pause';
+    } else{
+        startButtonIcon.innerHTML = 'play_arrow';
     }
 };
 
@@ -270,5 +300,20 @@ const checkline = () => {
             // Reseteamos el array de cuadrados
             gridSquares = Array.from(document.querySelectorAll('.grid div:not(.before__grid)'));
         }
+    }
+};
+
+const setVolume = () => {
+    const volumeButtonIconEl = document.querySelector('#volume-button i');
+    if( volumeOn ){
+        volumeButtonIconEl.innerHTML = 'volume_mute';
+    } else{
+        volumeButtonIconEl.innerHTML = 'volume_up';
+    }
+    volumeOn = !volumeOn;
+    if( volumeOn && !paused ){
+        this.audio.play();
+    } else if( !paused ) {
+        this.audio.pause();
     }
 };
