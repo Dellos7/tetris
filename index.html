@@ -9,10 +9,9 @@
     </head>
     <body>
         <main>
-            <h3 id="score">SCORE: <span id="score">0</span></h3>
+            <h3 class="score">SCORE: <span id="score">0</span></h3>
             <div id="core-buttons">
-                <button id="start-button" onclick="startPause()"><i class="material-icons">play_arrow</i></button>
-                <button id="volume-button" onclick="setVolume()"><i class="material-icons">volume_up</i></button>
+                <button id="pause-button" onclick="startPause()"><i class="material-icons">play_arrow</i></button>
             </div>
             <div id="touch-buttons">
                 <button id="go-left-button" onclick="moveLeft()"><i class="material-icons">keyboard_arrow_left</i></button>
@@ -295,11 +294,44 @@
                 <div></div>
                 <div></div>
             </div>
+            <div id="start-game-screen" class="start-game-screen">
+                <a href="https://github.com/Dellos7/tetris" target="_blank" rel="noopener noreferrer">
+                    <i class="github-icon"></i>
+                </a>
+                <h2>
+                    <span class="tetris t1">T</span>
+                    <span class="tetris e">E</span>
+                    <span class="tetris t2">T</span>
+                    <span class="tetris r">R</span>
+                    <span class="tetris i">I</span>
+                    <span class="tetris s">S</span>
+                </h2>
+                <button class="start-game" onclick="startPause()">START</button>
+                <button class="volume-button" onclick="setVolume()"><i class="material-icons">volume_up</i></button>
+            </div>
+            <div id="pause-screen" class="pause-screen">
+                <a href="https://github.com/Dellos7/tetris" target="_blank" rel="noopener noreferrer">
+                    <i class="github-icon"></i>
+                </a>
+                <h2>GAME PAUSED</h2>
+                <button class="resume-game" onclick="startPause()">RESUME</button>
+                <button class="volume-button" onclick="setVolume()"><i class="material-icons">volume_up</i></button>
+            </div>
+            <div id="game-over-screen" class="game-over-screen">
+                <a href="https://github.com/Dellos7/tetris" target="_blank" rel="noopener noreferrer">
+                    <i class="github-icon"></i>
+                </a>
+                <h2>GAME OVER</h2>
+                <button class="restart-game" onclick="startPause()">RESTART</button>
+                <button class="volume-button" onclick="setVolume()"><i class="material-icons">volume_up</i></button>
+            </div>
         </main>
 
         <audio id="audio">
-            <source src="assets/Tetris.ogg" type="audio/ogg">
+            <!-- <source src="assets/Tetris.ogg" type="audio/ogg">
             <source src="assets/Tetris.mp3" type="audio/mpeg">
+            <source src="assets/gameover.wav" type="audio/wav"> -->
+                <source src="">
             Your browser does not support the audio element.
         </audio>
 

@@ -10,7 +10,8 @@ html{
 
 body{
     font-family: Helvetica, Arial, sans-serif;
-    background-color: #6976bc;
+    /* background-color: #6976bc; */
+    background-color: rgb(42,48,74);
     touch-action: pan-x pan-y;
 }
 
@@ -21,7 +22,7 @@ main{
     flex-flow: column;
 }
 
-h3#score{
+h3.score{
     font-size: 2rem;
     position: fixed;
     left: 2rem;
@@ -42,7 +43,7 @@ button{
     cursor: pointer;
 }
 
-button#start-button{
+button#pause-button{
     width: 7rem;
     height: 7rem;
     position: fixed;
@@ -106,7 +107,7 @@ button#move-down-button-2{
     border: 1px solid white;
 }
 
-button#volume-button{
+button.volume-button{
     position: fixed;
     bottom: 2rem;
     border: none;
@@ -116,8 +117,102 @@ button#volume-button{
     padding: 0;
 }
 
-button#volume-button i{
+button.volume-button i{
     font-size: 3rem;
+}
+
+.pause-screen, .start-game-screen, .game-over-screen{
+    position: absolute;
+    transform: translateX(-100%);
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0,0,0,.8);
+}
+
+.start-game-screen{
+    transform: translateX(0);
+}
+
+.pause-screen.visible, .game-over-screen.visible{
+    animation: pauseScreenIn 1s forwards ease-out;
+}
+
+.start-game-screen.invisible{
+    animation: pauseScreenOut .6s forwards ease-out;
+}
+
+.pause-screen h2, .start-game-screen h2, .game-over-screen h2{
+    color: white;
+    font-size: 5vh;
+    animation: textDisappear 1.5s infinite ease-in-out;
+}
+
+.start-game-screen h2{
+    animation: none;
+    letter-spacing: 1rem;
+}
+
+.game-over-screen h2{
+    animation: none;
+    letter-spacing: 1rem;
+    color: #e91e63;
+}
+
+.tetris{
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.tetris.t1{
+    animation-name: tetrisColorT1;
+    animation-delay: 1s;
+}
+
+.tetris.e{
+    animation-name: tetrisColorE;
+    animation-delay: 1.2s;
+}
+
+.tetris.t2{
+    animation-name: tetrisColorT2;
+    animation-delay: 1.4s;
+}
+
+.tetris.r{
+    animation-name: tetrisColorR;
+    animation-delay: 1.6s;
+}
+
+.tetris.i{
+    animation-name: tetrisColorI;
+    animation-delay: 1.8s;
+}
+
+.tetris.s{
+    animation-name: tetrisColorS;
+    animation-delay: 2s;
+}
+
+button.resume-game, button.start-game, button.restart-game{
+    border-radius: 0;
+    margin-top: 2rem;
+    background-color: #4caf50;
+    border: 0;
+    font-size: 3vh;
+    padding: 1.5rem 2rem;
+    border: 1px solid white;
+}
+
+button.restart-game{
+    background-color: #e91e63;
 }
 
 .grid{
@@ -128,7 +223,8 @@ button#volume-button i{
     flex-wrap: wrap;
     border-radius: 5px;
     position: relative;
-    background-color: #a139b3;
+    /* background-color: #a139b3; */
+    background-color: #fefefe;
 }
 
 .grid-clickleft{
@@ -151,14 +247,15 @@ button#volume-button i{
     height: calc(8rem + 2px);
     flex-wrap: wrap;
     border-radius: 5px;
-    background-color: #a139b3;
+    background-color: #fefefe;
 }
 
 .grid, .next-figure-grid{
     -webkit-box-shadow: -2px 10px 21px -3px rgba(0,0,0,0.56);
     -moz-box-shadow: -2px 10px 21px -3px rgba(0,0,0,0.56);
     box-shadow: -2px 10px 21px -3px rgba(0,0,0,0.56);
-    border: 1px solid #810297;
+    /* border: 1px solid #810297; */
+    border: 1px solid #2a3149;
     overflow: hidden;
 }
 
@@ -171,50 +268,47 @@ button#volume-button i{
 .grid div, .next-figure-grid div{
     width: 2rem;
     height: 2rem;
-    /*background-color: red;*/
-    /* border: .5px solid lightgray; */
-    /* border-radius: 5px; */
-    /* background-color: #a139b3; */
 }
 
 .grid div:nth-child(even){
-    background-color: #9032a0;
+    background-color: #f7f7f7;
 }
 
 .grid div.tetromino, .next-figure-grid div.tetromino{
-    /* background-color: blue; */
-    border: .5px solid lightgray;
-    border-radius: 5px;
-    /* -webkit-box-shadow: 1px 10px 21px -3px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 10px 21px -3px rgba(0,0,0,0.75);
-    box-shadow: 1px 10px 21px -3px rgba(0,0,0,0.75); */
+    border-radius: 1px;
+    border: .5px solid white;
 }
 
 .grid div.tetromino.l, .next-figure-grid div.tetromino.l{
     background-color: magenta;
-    border-color: #810696;
 }
 .grid div.tetromino.z, .next-figure-grid div.tetromino.z{
-    background-color: orange;
-    border-color: #b97904;
+    /* background-color: orange;
+    border-color: #b97904; */
+    background-color: #fd6f22;
 }
 .grid div.tetromino.t, .next-figure-grid div.tetromino.t{
-    background-color: green;
-    border-color: #055605;
+    /* background-color: green;
+    border-color: #055605; */
+    background-color: #3aa757;
 }
 .grid div.tetromino.o, .next-figure-grid div.tetromino.o{
-    border-color: #000085;
-    background-color: blue;
+    /* border-color: #000085;
+    background-color: blue; */
+    background-color: #4688f1;
 }
 .grid div.tetromino.i, .next-figure-grid div.tetromino.i{
-    background-color: red;
-    border-color: #b10000;
+    /* background-color: red;
+    border-color: #b10000; */
+    background-color: #e8453c;
 }
 .grid div.tetromino.j, .next-figure-grid div.tetromino.j{
-    background-color: yellow;
+    /* background-color: yellow; */
+    background-color: #f9bc2d;
 }
 .grid div.tetromino.s, .next-figure-grid div.tetromino.s{
-    background-color: cyan;
+    /* background-color: cyan; */
+    background-color: #4cbdc5;
 }
 
 .taken{
@@ -229,6 +323,100 @@ button#volume-button i{
     display: none;
 }
 
-@media all and ( max-width: 600px ){
-    
+@media all and ( hover: hover ){
+    #touch-buttons{
+        display: none;
+    }
+}
+
+@media all and ( min-height: 800px ){
+    .grid{
+        width: calc(30rem + 2px);
+        height: calc(60rem + 2px);
+    }
+
+    .next-figure-grid{
+        width: calc(12rem + 2px);
+        height: calc(12rem + 2px);
+    }
+
+    .grid div, .next-figure-grid div{
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+@keyframes textDisappear{
+    from{
+        opacity: .6;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+@keyframes pauseScreenIn{
+    70%{
+        transform: translateX(20%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+@keyframes pauseScreenOut{
+    30%{
+        transform: translateX(20%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes tetrisColorT1{
+    to{
+        background-color: #fd6f22;
+    }
+}
+
+@keyframes tetrisColorE{
+    to{
+        background-color: #3aa757;
+    }
+}
+
+@keyframes tetrisColorT2{
+    to{
+        background-color: #4688f1;
+    }
+}
+
+@keyframes tetrisColorR{
+    to{
+        background-color: #f9bc2d;
+    }
+}
+
+@keyframes tetrisColorI{
+    to{
+        background-color: #4cbdc5;
+    }
+}
+
+@keyframes tetrisColorS{
+    to{
+        background-color: #e8453c;
+    }
+}
+
+.github-icon {
+    position: absolute;
+    left: 1rem;
+    top: 2rem;
+	width: 4rem;
+	height: 4rem;
+	background-size: cover;
+	background-repeat: no-repeat;
+    display: inline-block;
+	background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iMTc5MiIgaGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik04OTYgMTI4cTIwOSAwIDM4NS41IDEwM3QyNzkuNSAyNzkuNSAxMDMgMzg1LjVxMCAyNTEtMTQ2LjUgNDUxLjV0LTM3OC41IDI3Ny41cS0yNyA1LTQwLTd0LTEzLTMwcTAtMyAuNS03Ni41dC41LTEzNC41cTAtOTctNTItMTQyIDU3LTYgMTAyLjUtMTh0OTQtMzkgODEtNjYuNSA1My0xMDUgMjAuNS0xNTAuNXEwLTExOS03OS0yMDYgMzctOTEtOC0yMDQtMjgtOS04MSAxMXQtOTIgNDRsLTM4IDI0cS05My0yNi0xOTItMjZ0LTE5MiAyNnEtMTYtMTEtNDIuNS0yN3QtODMuNS0zOC41LTg1LTEzLjVxLTQ1IDExMy04IDIwNC03OSA4Ny03OSAyMDYgMCA4NSAyMC41IDE1MHQ1Mi41IDEwNSA4MC41IDY3IDk0IDM5IDEwMi41IDE4cS0zOSAzNi00OSAxMDMtMjEgMTAtNDUgMTV0LTU3IDUtNjUuNS0yMS41LTU1LjUtNjIuNXEtMTktMzItNDguNS01MnQtNDkuNS0yNGwtMjAtM3EtMjEgMC0yOSA0LjV0LTUgMTEuNSA5IDE0IDEzIDEybDcgNXEyMiAxMCA0My41IDM4dDMxLjUgNTFsMTAgMjNxMTMgMzggNDQgNjEuNXQ2NyAzMCA2OS41IDcgNTUuNS0zLjVsMjMtNHEwIDM4IC41IDg4LjV0LjUgNTQuNXEwIDE4LTEzIDMwdC00MCA3cS0yMzItNzctMzc4LjUtMjc3LjV0LTE0Ni41LTQ1MS41cTAtMjA5IDEwMy0zODUuNXQyNzkuNS0yNzkuNSAzODUuNS0xMDN6bS00NzcgMTEwM3EzLTctNy0xMi0xMC0zLTEzIDItMyA3IDcgMTIgOSA2IDEzLTJ6bTMxIDM0cTctNS0yLTE2LTEwLTktMTYtMy03IDUgMiAxNiAxMCAxMCAxNiAzem0zMCA0NXE5LTcgMC0xOS04LTEzLTE3LTYtOSA1IDAgMTh0MTcgN3ptNDIgNDJxOC04LTQtMTktMTItMTItMjAtMy05IDggNCAxOSAxMiAxMiAyMCAzem01NyAyNXEzLTExLTEzLTE2LTE1LTQtMTkgN3QxMyAxNXExNSA2IDE5LTZ6bTYzIDVxMC0xMy0xNy0xMS0xNiAwLTE2IDExIDAgMTMgMTcgMTEgMTYgMCAxNi0xMXptNTgtMTBxLTItMTEtMTgtOS0xNiAzLTE0IDE1dDE4IDggMTQtMTR6IiBmaWxsPSIjZmZmIi8+PC9zdmc+);
 }
