@@ -1,8 +1,8 @@
 const rowCount = 10;
 // Define el tetromino en forma de "L"
 const lTetromino = [
-    /* Según la foto "tetrominios.jpg", teniendo en cuenta que cada fila tiene 10 cuadrados,
-        definimos en cada uno de los arrays las posiciones (de 0 a 299) de las celdas de la figura
+    /* Según la foto https://docs.google.com/spreadsheets/d/1Da0of9H4Zxxs-JlxOEiGEtIcL7DvxndQ4YXJoQzT79c/edit?usp=sharing,
+    teniendo en cuenta que cada fila tiene 10 cuadrados, definimos en cada uno de los arrays las posiciones (de 0 a 199) de las celdas de la figura
     */
     [0, rowCount, rowCount*2, rowCount*2+1],
     [0,1,2,rowCount],
