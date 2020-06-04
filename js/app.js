@@ -151,6 +151,7 @@ const freeze = () => {
     });
     if( contains ){
         clearInterval(timerId);
+        timerId = null;
         for( const pos of currentTetrominoPositions ){
             gridSquares[currentPosition + pos].classList.add('taken');
         }
@@ -266,6 +267,7 @@ const startPause = () => {
         } else{
             paused = true;
             clearInterval(timerId);
+            timerId = null;
         }
     }
     togglePlayPauseIcon(!paused);
@@ -306,8 +308,6 @@ const checkline = () => {
             score += 10;
             if( score%50 == 0 && TIME > 100 ){ // Cada 50 puntos aumentamos la velocidad
                 TIME -= 100;
-                clearInterval(timerId);
-                timerId = setInterval( moveDown, TIME );
             }
             scoreDisplay.innerHTML = score;
             // Reseteamos el array de cuadrados
@@ -342,6 +342,7 @@ const checkGameOver = () => {
         doRestartGame = true;
         document.querySelector('#game-over-screen').classList.add('visible');
         clearInterval(timerId);
+        timerId = null;
         audio.pause();
         audioSrc.src = 'assets/gameover.wav';
         audio.loop = false;
